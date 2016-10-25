@@ -8,7 +8,7 @@
         android:id="@+id/title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Title"
+        android:hint="Event name"
         android:textSize="30dp" />
 
     <EditText
@@ -25,9 +25,8 @@
 
         <TextView
             android:id="@+id/address"
-            android:layout_width="match_parent"
+            android:layout_width="276dp"
             android:layout_height="wrap_content"
-            android:layout_weight="2.5"
             android:textAlignment="center"
             android:text="@string/çhooseType"
             android:textSize="20dp" />
@@ -41,9 +40,8 @@
     </LinearLayout>
 
     <DatePicker
-        android:layout_width="wrap_content"
+        android:layout_width="263dp"
         android:layout_height="wrap_content"
-        android:layout_weight="5"
         android:textSize="12sp"
         android:datePickerMode="spinner"
         android:calendarViewShown="false"
@@ -59,6 +57,11 @@
         android:timePickerMode="spinner"
         />
 
+    <Button
+        android:text="ADD"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/button3" />
 
 
 </LinearLayout>
