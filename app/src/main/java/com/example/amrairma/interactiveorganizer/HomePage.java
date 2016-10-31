@@ -1,5 +1,6 @@
 package com.example.amrairma.interactiveorganizer;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -20,15 +21,23 @@ public class HomePage extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home_page);
 
-        getSupportActionBar().setTitle("Interactive Organizer");
-
-        Long date;
+        final Long date;
 
         final CalendarView cv = (CalendarView) findViewById(R.id.calendarView);
         date = cv.getDate();
         cv.setOnDateChangeListener(new CalendarView.OnDateChangeListener(){
             public void onSelectedDayChange(CalendarView view, int year, int month, int dayOfMonth) {
-                    Toast.makeText(view.getContext(), "Year=" + year + " Month=" + month + " Day=" + dayOfMonth, Toast.LENGTH_LONG).show();
+                Bundle bundle=new Bundle();
+                    //Toast.makeText(view.getContext(), "Year=" + year + " Month=" + month + " Day=" + dayOfMonth, Toast.LENGTH_LONG).show();
+                Intent intent = new Intent(HomePage.this, ViewEventsActivity.class);
+                String yearStr = Integer.toString(year);
+                String monthStr = Integer.toString(month);
+                String dayStr = Integer.toString(dayOfMonth);
+
+                intent.putExtra("YEAR", yearStr);
+                intent.putExtra("MONTH", monthStr);
+                intent.putExtra("DAY", dayStr);
+                startActivity(intent);
             }
         });
     }
@@ -39,7 +48,9 @@ public class HomePage extends AppCompatActivity {
         getMenuInflater().inflate(R.menu.menu_home_page, menu);
         return true;
     }
-
+    public void onDestroy() {
+        super.onDestroy();
+    }
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle action bar item clicks here. The action bar will
