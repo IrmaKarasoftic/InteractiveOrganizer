@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <EditText
+        android:id="@+id/eventDate"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#000"
+        android:textColor="#fff"
+        android:ems="10"
+        android:textSize="22dip"
+        android:gravity="center"
+        android:inputType="text"
+        android:text="25/11/2016" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="150dip"
+        android:orientation="vertical"
+        android:padding="15dp"
+        android:weightSum="10"
+        android:layout_below="@+id/eventDate"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:id="@+id/linearLayout">
+
+        <EditText
+            android:id="@+id/eventName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_weight="1"
+            android:background="#42f4d1"
+            android:ems="10"
+            android:inputType="text"
+            android:text="Amra's birthday" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="85dp"
+            android:orientation="horizontal">
+
+            <EditText
+                android:id="@+id/eventDescription"
+                android:layout_width="200dip"
+                android:layout_height="70dip"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_below="@+id/eventName"
+                android:ems="10"
+                android:inputType="textMultiLine"
+                android:text="Remember to buy her a present"
+                android:textSize="15dp" />
+
+            <EditText
+                android:id="@+id/eventTime"
+                android:layout_width="170dip"
+                android:layout_height="70dip"
+                android:layout_alignBaseline="@+id/eventDescription"
+                android:layout_alignBottom="@+id/eventDescription"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:layout_weight="4"
+                android:ems="10"
+                android:inputType="text"
+                android:text="13:30" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="150dip"
+        android:orientation="vertical"
+        android:padding="15dp"
+        android:weightSum="10"
+        android:layout_below="@+id/linearLayout"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:id="@+id/linearLayout2">
+
+        <EditText
+            android:id="@+id/eventName1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_weight="1"
+            android:background="#42f4d1"
+            android:ems="10"
+            android:inputType="text"
+            android:text="Irma's birthday" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="85dp"
+            android:orientation="horizontal">
+
+            <EditText
+                android:id="@+id/eventDescription1"
+                android:layout_width="200dip"
+                android:layout_height="70dip"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_below="@+id/eventName"
+                android:ems="10"
+                android:inputType="textMultiLine"
+                android:text="Remember to buy her a present"
+                android:textSize="15dp" />
+
+            <EditText
+                android:id="@+id/eventTime1"
+                android:layout_width="170dip"
+                android:layout_height="70dip"
+                android:layout_alignBaseline="@+id/eventDescription"
+                android:layout_alignBottom="@+id/eventDescription"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:layout_weight="4"
+                android:ems="10"
+                android:inputType="text"
+                android:text="10:30" />
+        </LinearLayout>
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="150dip"
+        android:orientation="vertical"
+        android:padding="15dp"
+        android:weightSum="10"
+        android:layout_below="@+id/linearLayout2"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true">
+
+        <EditText
+            android:id="@+id/eventName2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_weight="1"
+            android:background="#18b9dd"
+            android:ems="10"
+            android:inputType="text"
+            android:text="Business meeting" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="85dp"
+            android:orientation="horizontal">
+
+            <EditText
+                android:id="@+id/eventDescription2"
+                android:layout_width="200dip"
+                android:layout_height="70dip"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_below="@+id/eventName"
+                android:ems="10"
+                android:inputType="textMultiLine"
+                android:text="Conference room number 5"
+                android:textSize="15dp" />
+
+            <EditText
+                android:id="@+id/eventTime2"
+                android:layout_width="170dip"
+                android:layout_height="70dip"
+                android:layout_alignBaseline="@+id/eventDescription"
+                android:layout_alignBottom="@+id/eventDescription"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:layout_weight="4"
+                android:ems="10"
+                android:inputType="text"
+                android:text="16:00" />
+        </LinearLayout>
+    </LinearLayout>
+</RelativeLayout>
