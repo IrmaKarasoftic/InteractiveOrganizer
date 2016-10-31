@@ -8,6 +8,10 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.CalendarView;
+import android.widget.Toast;
+
+import static com.example.amrairma.interactiveorganizer.R.id.view;
 
 public class HomePage extends AppCompatActivity {
 
@@ -17,6 +21,16 @@ public class HomePage extends AppCompatActivity {
         setContentView(R.layout.activity_home_page);
 
         getSupportActionBar().setTitle("Interactive Organizer");
+
+        Long date;
+
+        final CalendarView cv = (CalendarView) findViewById(R.id.calendarView);
+        date = cv.getDate();
+        cv.setOnDateChangeListener(new CalendarView.OnDateChangeListener(){
+            public void onSelectedDayChange(CalendarView view, int year, int month, int dayOfMonth) {
+                    Toast.makeText(view.getContext(), "Year=" + year + " Month=" + month + " Day=" + dayOfMonth, Toast.LENGTH_LONG).show();
+            }
+        });
     }
 
     @Override
