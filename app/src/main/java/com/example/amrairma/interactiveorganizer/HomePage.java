@@ -9,14 +9,14 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Button;
 import android.widget.CalendarView;
 import android.widget.Toast;
 
 import static com.example.amrairma.interactiveorganizer.R.id.view;
 
-public class HomePage extends AppCompatActivity implements View.OnClickListener{
+public class HomePage extends AppCompatActivity {
 
-    FloatingActionButton add;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -29,20 +29,25 @@ public class HomePage extends AppCompatActivity implements View.OnClickListener{
         cv.setOnDateChangeListener(new CalendarView.OnDateChangeListener(){
             public void onSelectedDayChange(CalendarView view, int year, int month, int dayOfMonth) {
                 Bundle bundle=new Bundle();
-                    //Toast.makeText(view.getContext(), "Year=" + year + " Month=" + month + " Day=" + dayOfMonth, Toast.LENGTH_LONG).show();
+                //Toast.makeText(view.getContext(), "Year=" + year + " Month=" + month + " Day=" + dayOfMonth, Toast.LENGTH_LONG).show();
                 Intent intent = new Intent(HomePage.this, ViewEventsActivity.class);
                 String yearStr = Integer.toString(year);
                 String monthStr = Integer.toString(month);
                 String dayStr = Integer.toString(dayOfMonth);
+
                 intent.putExtra("YEAR", yearStr);
                 intent.putExtra("MONTH", monthStr);
                 intent.putExtra("DAY", dayStr);
                 startActivity(intent);
             }
         });
-        add=(FloatingActionButton)findViewById(R.id.fab);
-        add.setOnClickListener(this);
-
+        FloatingActionButton fab= (FloatingActionButton) findViewById(R.id.fab);
+        fab.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                Intent intent = new Intent(HomePage.this, addNewEvent.class);
+                startActivity(intent);
+            }
+        });
     }
 
     @Override
@@ -67,20 +72,5 @@ public class HomePage extends AppCompatActivity implements View.OnClickListener{
         }
 
         return super.onOptionsItemSelected(item);
-    }
-
-    private void buttonAddClick(){
-
-        startActivity(new Intent(".AddNewEvent"));
-
-    }
-    public void onClick(View v){
-
-        switch(v.getId())
-        {
-            case R.id.fab:
-                buttonAddClick();
-                break;
-        }
     }
 }
