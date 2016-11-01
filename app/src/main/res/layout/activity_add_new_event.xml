@@ -3,20 +3,25 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
-
+    <TimePicker
+        android:id="@+id/tp_timepicker"
+        android:layout_height="wrap_content"
+        android:layout_weight="5"
+        android:layout_width="wrap_content"
+        />
     <EditText
         android:id="@+id/title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Event name"
-        android:textSize="30dp" />
+        android:textSize="20dp" />
 
     <EditText
         android:id="@+id/description"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Description"
-        android:textSize="25dp" />
+        android:textSize="15dp" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -39,29 +44,28 @@
             />
     </LinearLayout>
 
-    <DatePicker
+    <!--<DatePicker
         android:layout_width="263dp"
         android:layout_height="wrap_content"
         android:textSize="12sp"
         android:datePickerMode="spinner"
         android:calendarViewShown="false"
-        />
+        />-->
 
-
-    <TimePicker
-        android:id="@+id/tp_timepicker"
-        android:layout_height="wrap_content"
-        android:layout_weight="5"
+    <Button
         android:layout_width="wrap_content"
-        android:textSize="12sp"
-        android:timePickerMode="spinner"
-        />
+        android:layout_height="wrap_content"
+        android:text="Pick date"
+        android:onClick="showDatePickerDialog"
+        android:gravity="center"
+        android:layout_gravity="center"/>
+
 
     <Button
         android:text="ADD"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/button3" />
+        android:id="@+id/buttonAdd" />
 
 
 </LinearLayout>

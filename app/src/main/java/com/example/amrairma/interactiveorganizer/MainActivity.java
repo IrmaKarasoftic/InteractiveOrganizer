@@ -34,9 +34,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pocetni_screen );
-        editTextEmail=(EditText) findViewById(R.id.editText3);
-        editTextName=(EditText) findViewById(R.id.editText);
-        editTextLastName=(EditText) findViewById(R.id.editText2);
+        editTextEmail=(EditText) findViewById(R.id.email);
+        editTextName=(EditText) findViewById(R.id.firstName);
+        editTextLastName=(EditText) findViewById(R.id.lastName);
 
         buttonOK.setOnClickListener(this);
     }
