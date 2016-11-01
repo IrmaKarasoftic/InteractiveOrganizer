@@ -28,7 +28,7 @@ public class HomePage extends AppCompatActivity {
         date = cv.getDate();
         cv.setOnDateChangeListener(new CalendarView.OnDateChangeListener(){
             public void onSelectedDayChange(CalendarView view, int year, int month, int dayOfMonth) {
-                Bundle bundle=new Bundle();
+
                 //Toast.makeText(view.getContext(), "Year=" + year + " Month=" + month + " Day=" + dayOfMonth, Toast.LENGTH_LONG).show();
                 Intent intent = new Intent(HomePage.this, ViewEventsActivity.class);
                 String yearStr = Integer.toString(year);
