@@ -14,8 +14,9 @@ import android.widget.Toast;
 
 import static com.example.amrairma.interactiveorganizer.R.id.view;
 
-public class HomePage extends AppCompatActivity {
+public class HomePage extends AppCompatActivity implements View.OnClickListener{
 
+    FloatingActionButton add;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -33,13 +34,15 @@ public class HomePage extends AppCompatActivity {
                 String yearStr = Integer.toString(year);
                 String monthStr = Integer.toString(month);
                 String dayStr = Integer.toString(dayOfMonth);
-
                 intent.putExtra("YEAR", yearStr);
                 intent.putExtra("MONTH", monthStr);
                 intent.putExtra("DAY", dayStr);
                 startActivity(intent);
             }
         });
+        add=(FloatingActionButton)findViewById(R.id.fab);
+        add.setOnClickListener(this);
+
     }
 
     @Override
@@ -64,5 +67,20 @@ public class HomePage extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    private void buttonAddClick(){
+
+        startActivity(new Intent(".AddNewEvent"));
+
+    }
+    public void onClick(View v){
+
+        switch(v.getId())
+        {
+            case R.id.fab:
+                buttonAddClick();
+                break;
+        }
     }
 }

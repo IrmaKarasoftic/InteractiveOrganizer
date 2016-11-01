@@ -4,7 +4,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:padding="15dip" >
+    android:padding="15dip"
+    tools:context=".MainActivity">
 
     <EditText
         android:id="@+id/title"
@@ -70,7 +71,7 @@
         android:text="OK"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/button2"
+        android:id="@+id/buttonOK"
         android:onClick="openHomePage"
         />
 
