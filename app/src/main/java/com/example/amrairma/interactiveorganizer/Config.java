@@ -8,12 +8,11 @@ import java.util.Date;
 
 public class Config {
 
-    public static final String URL_OK="http://192.168.1.8/android_login_api/include/Register.php";
+    public static final String URL_OK="http://192.168.1.8/android_login_api/Register.php";
 
-    //public static final String KEY_EMP_ID = "id";
+    public static final String KEY_ID = "id";
     public static final String KEY_NAME = "name";
     public static final String KEY_LASTNAME = "lastname";
-    public static final String KEY_BIRTH = "birth";
     public static final String KEY_EMAIL = "email";
     //public static final String KEY_DATE = "birth";
 
@@ -23,7 +22,7 @@ public class Config {
     public static final String TAG_NAME = "name";
     public static final String TAG_LASTNAME = "lastname";
     public static final String TAG_EMAIL = "email";
-    public static final String TAG_BIRTH = "birth";
+
 
 
 }
