@@ -54,13 +54,6 @@
                 android:clipToPadding="false" />
         </LinearLayout>
 
-        <!--<DatePicker
-            android:layout_width="263dp"
-            android:layout_height="wrap_content"
-            android:textSize="12sp"
-            android:datePickerMode="spinner"
-            android:calendarViewShown="false"
-            />-->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
