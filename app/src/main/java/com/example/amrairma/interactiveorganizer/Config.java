@@ -8,20 +8,20 @@ import java.util.Date;
 
 public class Config {
 
-    public static final String URL_OK="http://192.168.1.8/android_login_api/Register.php";
+    public static final String URL_OK="http://192.168.1.8/addPerson.php";
 
-    //public static final String KEY_ID = "id";
+    public static final String KEY_ID = "id";
     public static final String KEY_NAME = "name";
     public static final String KEY_LASTNAME = "lastname";
     public static final String KEY_EMAIL = "email";
     //public static final String KEY_DATE = "birth";
 
     //JSON Tags
-    public static final String TAG_JSON_ARRAY="result";
+   // public static final String TAG_JSON_ARRAY="result";
     //public static final String TAG_ID = "id";
-    public static final String TAG_NAME = "name";
-    public static final String TAG_LASTNAME = "lastname";
-    public static final String TAG_EMAIL = "email";
+    //public static final String TAG_NAME = "name";
+    //public static final String TAG_LASTNAME = "lastname";
+    //public static final String TAG_EMAIL = "email";
 
 
 

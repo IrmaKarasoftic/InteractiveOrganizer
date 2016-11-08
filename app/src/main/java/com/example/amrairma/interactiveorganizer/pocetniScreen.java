@@ -24,11 +24,13 @@ public class pocetniScreen extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pocetni_screen);
+
         Button button= (Button) findViewById(R.id.buttonOK);
         editTextEmail=(EditText) findViewById(R.id.email);
         editTextName=(EditText) findViewById(R.id.firstName);
         editTextLastName=(EditText) findViewById(R.id.lastName);
-        button.setOnClickListener(new View.OnClickListener() {
+
+       button.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
 
                 EditText firstName = (EditText) findViewById(R.id.firstName);
