@@ -13,12 +13,29 @@
         <activity
             android:name=".HomePage"
             android:label="@string/app_name"
+<<<<<<< HEAD
+=======
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+            <action android:name="android.intent.action.MAIN" />
+            <category android:name="android.intent.category.LAUNCHER" />
+        </intent-filter>
         </activity>
+        <activity android:name=".ViewEventsActivity" />
+        <activity
+            android:name=".pocetniScreen"
+            android:label="@string/app_name"
+>>>>>>> d293c5c5d61a950a6cb5ac1942754701d42606f2
+            android:theme="@style/AppTheme.NoActionBar">
+
+        </activity>
+        <activity
+            android:name=".addNewEvent"
+            android:windowSoftInputMode="stateHidden" />
+        <activity android:name=".caldroid">
+
+        </activity>
+<<<<<<< HEAD
         <activity android:name=".ViewEventsActivity" />
         <activity
             android:name=".pocetniScreen"
@@ -28,6 +45,8 @@
         <activity android:name=".addNewEvent"
             android:windowSoftInputMode="stateHidden"
             />
+=======
+>>>>>>> d293c5c5d61a950a6cb5ac1942754701d42606f2
     </application>
 
 </manifest>
