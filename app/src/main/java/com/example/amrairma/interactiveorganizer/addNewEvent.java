@@ -85,14 +85,15 @@ public class addNewEvent extends AppCompatActivity {
         final int min=eventTime.getCurrentMinute();
         final String string=datum+" "+sati+":"+min+":00";
         Date dateAndTime=null;
+
+        SimpleDateFormat sdf3= new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
         try{
-            dateAndTime=sdf.parse(string);
+            dateAndTime=sdf3.parse(string);
         }
         catch (ParseException e)
         {
             e.printStackTrace();
         }
-
         final String finalDateAndTime = sdf.format(dateAndTime);
         class AddEvent extends AsyncTask<Void,Void,String> {
 
