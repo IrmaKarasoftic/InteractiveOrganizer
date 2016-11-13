@@ -18,4 +18,7 @@ public class ViewEventsActivity extends AppCompatActivity {
         String year = extras.getString("YEAR");
         selectedDate.setText(day+"/"+month+"/"+year);
     }
+    void PopulateEventsList() {
+        
+    }
 }
