@@ -50,6 +50,7 @@
                 android:layout_height="wrap_content"
                 android:textSize="15dp"
                 android:layout_weight="1"
+                android:entries="@array/eventTypes"
                 tools:theme="@style/Animation.AppCompat.DropDownUp"
                 android:clipToPadding="false" />
         </LinearLayout>
