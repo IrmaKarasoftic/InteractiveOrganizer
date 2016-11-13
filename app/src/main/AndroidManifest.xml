@@ -24,14 +24,10 @@
             android:name=".pocetniScreen"
             android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar">
-
         </activity>
-        <activity
-            android:name=".addNewEvent"
-            android:windowSoftInputMode="stateHidden" />
-        <activity android:name=".caldroid">
-
-        </activity>
+        <activity android:name=".addNewEvent"
+            android:windowSoftInputMode="stateHidden"
+            />
     </application>
 
 </manifest>
