@@ -1,4 +1,6 @@
 package com.example.amrairma.interactiveorganizer;
+import org.json.JSONObject;
+
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.InputStreamReader;
@@ -105,18 +107,22 @@ public class RequestHandler {
     private String getPostDataString(HashMap<String, String> params) throws UnsupportedEncodingException {
         StringBuilder result = new StringBuilder();
         boolean first = true;
-        for (Map.Entry<String, String> entry : params.entrySet()) {
-            if (first)
-                first = false;
-            else
-                result.append("&");
 
-            result.append(URLEncoder.encode(entry.getKey(), "UTF-8"));
-            result.append("=");
-            result.append(URLEncoder.encode(entry.getValue(), "UTF-8"));
-        }
+        // Saljem kao JSON
+        JSONObject obj = new JSONObject(params);
 
-        return result.toString();
+//        for (Map.Entry<String, String> entry : params.entrySet()) {
+//            if (first)
+//                first = false;
+//            else
+//                result.append("&");
+//
+//            result.append(URLEncoder.encode(entry.getKey(), "UTF-8"));
+//            result.append("=");
+//            result.append(URLEncoder.encode(entry.getValue(), "UTF-8"));
+//        }
+
+        return obj.toString();
     }
 
 

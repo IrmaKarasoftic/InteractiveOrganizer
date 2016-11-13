@@ -38,9 +38,11 @@ public class pocetniScreen extends AppCompatActivity {
                 EditText email = (EditText) findViewById(R.id.email);
                 boolean isEmailValid= Patterns.EMAIL_ADDRESS.matcher(email.getText().toString()).matches();
 
+
+
+                // Ovdje se ne klik nije nista desavalo, samo vodilo na sljedeci screen
                 if(firstName.getText().toString().length() != 0 && lastName.getText().toString().length()!=0 && isEmailValid) {
-                    Intent intent = new Intent(pocetniScreen.this, HomePage.class);
-                    startActivity(intent);
+                    addPerson();
                 }
                 else
                 {
@@ -79,6 +81,8 @@ public class pocetniScreen extends AppCompatActivity {
                 super.onPostExecute(s);
                 loading.dismiss();
                 Toast.makeText(pocetniScreen.this,s,Toast.LENGTH_LONG).show();
+                Intent intent = new Intent(pocetniScreen.this, HomePage.class);
+                startActivity(intent);
             }
 
             @Override
@@ -98,7 +102,7 @@ public class pocetniScreen extends AppCompatActivity {
         ap.execute();
 
     }
- //   @Override
+ // @Override
     public void onClick(View v) {
         if(v == buttonOK){
             addPerson();

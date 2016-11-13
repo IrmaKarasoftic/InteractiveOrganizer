@@ -8,7 +8,9 @@ import java.util.Date;
 
 public class Config {
 
-    public static final String URL_OK="http://192.168.1.8/addPerson.php";
+    // Ovaj ip je samo kad lokalno koristis, jer je virutualna masina ne moze localhost
+    // bio je addPerson.php, ali ste ga u php-u nazvali Register, pa eto :D
+    public static final String URL_OK="http://10.0.2.2:8080/Register.php";
 
     public static final String KEY_ID = "id";
     public static final String KEY_NAME = "name";
