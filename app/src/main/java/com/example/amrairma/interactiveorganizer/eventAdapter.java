@@ -26,7 +26,7 @@ public class eventAdapter extends ArrayAdapter {
     {
         super(context,resource,events);
         this.context=context;
-        this._events=events;
+//        this._events=events;
     }
     public List<?> getCollection() {return _events;};
     @Override

@@ -12,6 +12,7 @@ public class Config {
     // bio je addPerson.php, ali ste ga u php-u nazvali Register, pa eto :D
     public static final String URL_OK="http://10.0.2.2:8080/Register.php";
     public static final String URL_ADD="http://10.0.2.2:8080/AddEvent.php";
+    public static final String URL_GET_EVENTS="http://10.0.2.2:8080/GetEvents.php";
 
     public static final String KEY_ID = "id";
     public static final String KEY_NAME = "name";
@@ -24,10 +25,10 @@ public class Config {
     public static final String KEY_EDT = "dateAndTime";
 
     //JSON Tags
-   // public static final String TAG_JSON_ARRAY="result";
-    //public static final String TAG_ID = "id";
-    //public static final String TAG_NAME = "name";
-    //public static final String TAG_LASTNAME = "lastname";
+    public static final String TAG_JSON_ARRAY="result";
+    public static final String TAG_DESCRIPTION = "description";
+    public static final String TAG_NAME = "title";
+    public static final String TAG_TIME = "dateAndTime";
     //public static final String TAG_EMAIL = "email";
 
 
