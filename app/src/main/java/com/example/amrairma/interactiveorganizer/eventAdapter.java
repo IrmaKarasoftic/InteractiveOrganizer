@@ -7,6 +7,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
 import android.widget.ImageButton;
 import android.widget.TextView;
@@ -17,24 +18,25 @@ import java.util.List;
  * Created by irmaka on 11/14/2016.
  */
 
-public class eventAdapter extends BaseAdapter {
-    List<CalendarEvent> events=null;
+public class eventAdapter extends ArrayAdapter {
+    List<CalendarEvent> _events;
     Context context = null;
 
-    eventAdapter(List<CalendarEvent> events, Context context)
+    public eventAdapter(Context context, int resource, List<CalendarEvent> events)
     {
-        this.events=events;
+        super(context,resource,events);
         this.context=context;
+        this._events=events;
     }
-    public List<?> getCollection() {return events;};
+    public List<?> getCollection() {return _events;};
     @Override
     public int getCount() {
-        return events.size();
+        return _events.size();
     }
 
     @Override
     public Object getItem(int position) {
-        return events.get(position);
+        return _events.get(position);
     }
 
     @Override
@@ -46,11 +48,17 @@ public class eventAdapter extends BaseAdapter {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        if (convertView == null) {
-            LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            convertView = inflater.inflate(R.layout.view_events, parent, false);
-        }
+        CalendarEvent events=_events.get(position);
+        LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        View view = inflater.inflate(R.layout.property_layout, null);
 
-        return convertView;
+        TextView title= (TextView) view.findViewById(R.id.eventTitle);
+        TextView description= (TextView) view.findViewById(R.id.eventDescription);
+        TextView dateAndTime= (TextView) view.findViewById(R.id.eventTime);
+        title.setText(String.valueOf(events.getTitle()));
+        description.setText(String.valueOf(events.getDescription()));
+        dateAndTime.setText(String.valueOf(events.getDateAndTime()));
+
+        return view;
     }
 }

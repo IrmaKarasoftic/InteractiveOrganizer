@@ -14,6 +14,17 @@
         android:textSize="22dip"
         android:gravity="center"
         android:inputType="text"
-        android:text="25/11/2016" />
+        android:text="25/11/2016"
+        />
+
+    <ListView
+        android:layout_marginTop="60dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true"
+        android:id="@+id/listOfEvents"
+        />
+
 
 </RelativeLayout>
