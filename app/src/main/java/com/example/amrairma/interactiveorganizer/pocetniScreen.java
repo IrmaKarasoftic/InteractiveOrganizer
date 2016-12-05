@@ -9,13 +9,22 @@ import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ListAdapter;
+import android.widget.SimpleAdapter;
 import android.widget.Toast;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.util.regex.Pattern;
 import java.util.HashMap;
 public class pocetniScreen extends AppCompatActivity {
     private EditText editTextName;
     private EditText editTextLastName;
     private EditText editTextEmail;
+    private String JSON_STRING;
+    Integer brojac = null;
 
     private static final Pattern sPattern
             = Pattern.compile("^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,4}$");
@@ -23,7 +32,10 @@ public class pocetniScreen extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        getJSON();
+        if(brojac==1)
         setContentView(R.layout.activity_pocetni_screen);
+        else setContentView(R.layout.activity_home_page);
 
         Button button= (Button) findViewById(R.id.buttonOK);
         editTextEmail=(EditText) findViewById(R.id.email);
@@ -109,4 +121,68 @@ public class pocetniScreen extends AppCompatActivity {
         }
 
     }
+
+    public void getJSON(){
+        class GetJSON extends AsyncTask<Void,Void,String>{
+
+            ProgressDialog loading;
+            @Override
+            protected void onPreExecute(){
+
+                super.onPreExecute();
+                loading = ProgressDialog.show(pocetniScreen.this,"Fetching data","Wait..",false,false);
+
+            }
+            @Override
+            protected void onPostExecute(String s){
+
+                super.onPostExecute(s);
+                loading.dismiss();
+                JSON_STRING = s;
+                showNumber();
+            }
+            @Override
+            protected String doInBackground(Void... params){
+
+                RequestHandler rh = new RequestHandler();
+                String s=rh.sendGetRequest(Config.URL_GET_PERSON);
+                return s;
+
+            }
+
+
+        }
+        GetJSON gj = new GetJSON();
+        gj.execute();
+
+    }
+
+    private void showNumber(){
+
+        JSONObject jsonObject = null;
+        //  ArrayList<HashMap<String,String>> list = new ArrayList<>();
+        try{
+
+            jsonObject = new JSONObject(JSON_STRING);
+            JSONArray result = jsonObject.getJSONArray(Config.TAG_JSON_ARRAY);
+
+           // for(int i=0; i<result.length();i++){
+                JSONObject jo = result.getJSONObject(0);
+                brojac=jo.getInt(Config.TAG_BROJAC);
+                //String title = jo.getString(Config.TAG_NAME);
+               // String description = jo.getString(Config.TAG_DESCRIPTION);
+                // String dateAndTime=jo.getString(Config.TAG_TIME); //u date
+               // HashMap<String,String> events = new HashMap<>();
+               // events.put(Config.TAG_NAME,title);
+               // events.put(Config.TAG_DESCRIPTION,description);
+                // events.put(Config.TAG_TIME,dateAndTime);
+
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+
+    }
+
 }
