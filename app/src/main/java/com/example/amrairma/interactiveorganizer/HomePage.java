@@ -39,25 +39,8 @@ public class HomePage extends AppCompatActivity {
         t.replace(R.id.calendarView, caldroidFragment);
         t.commit();
 
-        /*final CalendarView cv = (CalendarView) findViewById(R.id.calendarView);
 
-        final CalendarView cv = (CalendarView) findViewById(R.id.calendarView);
-        date = cv.getDate();
-        cv.setOnDateChangeListener(new CalendarView.OnDateChangeListener(){
-            public void onSelectedDayChange(CalendarView view, int year, int month, int dayOfMonth) {
 
-                //Toast.makeText(view.getContext(), "Year=" + year + " Month=" + month + " Day=" + dayOfMonth, Toast.LENGTH_LONG).show();
-                Intent intent = new Intent(HomePage.this, ViewEventsActivity.class);
-                String yearStr = Integer.toString(year);
-                String monthStr = Integer.toString(month);
-                String dayStr = Integer.toString(dayOfMonth);
-
-                intent.putExtra("YEAR", yearStr);
-                intent.putExtra("MONTH", monthStr);
-                intent.putExtra("DAY", dayStr);
-                startActivity(intent);
-            }
-        });*/
         FloatingActionButton fab= (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
@@ -66,7 +49,6 @@ public class HomePage extends AppCompatActivity {
             }
         });
     }
-
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
