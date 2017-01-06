@@ -34,13 +34,25 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="16dp" />
 
+    <Button
+        android:layout_width="400px"
+        android:layout_height="wrap_content"
+        android:text="Vremenska prognoza"
+        android:id="@+id/vrijeme"
+        android:layout_marginLeft="29dp"
+        android:layout_marginStart="29dp"
+        android:background="#ff3f80"
+        android:layout_alignTop="@+id/fab"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
     <android.support.design.widget.FloatingActionButton android:id="@+id/fab"
         android:layout_width="wrap_content" android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"
         android:src="@android:drawable/ic_input_add"
         android:layout_marginRight="24dp"
         android:layout_marginEnd="24dp"
-        android:layout_marginBottom="25dp"
+        android:layout_marginBottom="27dp"
         android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true" />

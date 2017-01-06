@@ -44,6 +44,7 @@
                 android:layout_height="wrap_content"
                 android:drawableTint="#FF4081"
                 android:hint="First name"
+                android:text="Irma"
                 android:inputType="text" />
 
             <EditText
@@ -51,6 +52,7 @@
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
+                android:text="Karasoftic"
                 android:drawableTint="#FF4081"
                 android:hint="Last name"
                 android:inputType="text" />
@@ -62,6 +64,7 @@
                     android:layout_height="wrap_content"
                     android:drawableTint="#FF4081"
                     android:hint="Email"
+                    android:text="ahadziarapov@etf.unsa.ba"
                     android:layout_marginTop="16dp"
                     android:inputType="textEmailAddress" />
 

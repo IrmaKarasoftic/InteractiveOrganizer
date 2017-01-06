@@ -3,6 +3,8 @@
     package="com.example.amrairma.interactiveorganizer">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="com.android.alarm.permission.SET_ALARM" />
 
     <application
         android:allowBackup="true"
@@ -10,25 +12,28 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <receiver android:name=".AlarmReciever" />
         <activity
             android:name=".HomePage"
             android:label="@string/app_name"
-            android:theme="@style/AppTheme.NoActionBar">
-        </activity>
-        <activity android:name=".ViewEventsActivity">
-        </activity>
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".ViewEventsActivity" />
         <activity
             android:name=".pocetniScreen"
             android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".addNewEvent"
-            android:windowSoftInputMode="stateHidden"
-            />
+        <activity
+            android:name=".addNewEvent"
+            android:windowSoftInputMode="stateHidden" />
+        <activity android:name=".WeatherActivity" />
+        <activity android:name=".EventsActivity" />
+        <activity android:name=".EventsDetails"></activity>
     </application>
 
 </manifest>

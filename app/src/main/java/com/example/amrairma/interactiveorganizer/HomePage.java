@@ -3,22 +3,12 @@ package com.example.amrairma.interactiveorganizer;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
-import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
-import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.Button;
 import android.widget.CalendarView;
-import android.widget.Toast;
-
-import com.roomorama.caldroid.CaldroidFragment;
-
-import java.util.Calendar;
-
-import static com.example.amrairma.interactiveorganizer.R.id.view;
 
 public class HomePage extends AppCompatActivity {
 
@@ -27,9 +17,23 @@ public class HomePage extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home_page);
 
+        CalendarView calendar = (CalendarView)findViewById(R.id.calendarView);
+
+        calendar.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
+            @Override
+            public void onSelectedDayChange(CalendarView view, int year, int month, int dayOfMonth) {
+
+                Intent intent = new Intent(getApplicationContext(), EventsActivity.class);
+                intent.putExtra("year", year);
+                intent.putExtra("month", month);
+                intent.putExtra("day", dayOfMonth);
+                startActivity(intent);
+            }
+        });
+
         final Long date;
 
-        CaldroidFragment caldroidFragment = new CaldroidFragment();
+      /*  CaldroidFragment caldroidFragment = new CaldroidFragment();
         Bundle args = new Bundle();
         Calendar cal = Calendar.getInstance();
         args.putInt(CaldroidFragment.MONTH, cal.get(Calendar.MONTH) + 1);
@@ -37,7 +41,8 @@ public class HomePage extends AppCompatActivity {
         caldroidFragment.setArguments(args);
         FragmentTransaction t = getSupportFragmentManager().beginTransaction();
         t.replace(R.id.calendarView, caldroidFragment);
-        t.commit();
+        t.commit(); */
+
 
 
 
@@ -46,6 +51,14 @@ public class HomePage extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(HomePage.this, addNewEvent.class);
                 startActivity(intent);
+            }
+        });
+
+        final Button weather = (Button)findViewById(R.id.vrijeme);
+        weather.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getApplicationContext(), WeatherActivity.class));
             }
         });
     }

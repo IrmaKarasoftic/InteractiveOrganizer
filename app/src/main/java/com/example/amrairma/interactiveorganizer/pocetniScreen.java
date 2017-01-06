@@ -3,22 +3,22 @@ package com.example.amrairma.interactiveorganizer;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.AsyncTask;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ListAdapter;
-import android.widget.SimpleAdapter;
 import android.widget.Toast;
+
+import com.example.amrairma.interactiveorganizer.Models.Config;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.util.regex.Pattern;
 import java.util.HashMap;
+import java.util.regex.Pattern;
 public class pocetniScreen extends AppCompatActivity {
     private EditText editTextName;
     private EditText editTextLastName;
@@ -26,16 +26,15 @@ public class pocetniScreen extends AppCompatActivity {
     private String JSON_STRING;
     Integer brojac = null;
 
-    private static final Pattern sPattern
-            = Pattern.compile("^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,4}$");
+    private static final Pattern sPattern = Pattern.compile("^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,4}$");
     private Button buttonOK;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        getJSON();
-        if(brojac==1)
+   //     getJSON();
+      //  if(brojac==1)
         setContentView(R.layout.activity_pocetni_screen);
-        else setContentView(R.layout.activity_home_page);
+       // else setContentView(R.layout.activity_home_page);
 
         Button button= (Button) findViewById(R.id.buttonOK);
         editTextEmail=(EditText) findViewById(R.id.email);
@@ -145,8 +144,7 @@ public class pocetniScreen extends AppCompatActivity {
             protected String doInBackground(Void... params){
 
                 RequestHandler rh = new RequestHandler();
-                String s=rh.sendGetRequest(Config.URL_GET_PERSON);
-                return s;
+                return rh.sendGetRequest(Config.URL_GET_PERSON);
 
             }
 

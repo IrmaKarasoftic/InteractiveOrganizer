@@ -1,16 +1,15 @@
 package com.example.amrairma.interactiveorganizer;
 
 import android.content.Context;
-import android.content.Intent;
-import android.graphics.Typeface;
-import android.util.Log;
+import android.support.annotation.NonNull;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.BaseAdapter;
-import android.widget.ImageButton;
+import android.widget.LinearLayout;
 import android.widget.TextView;
+
+import com.example.amrairma.interactiveorganizer.RealmModels.RealmCalendarEvent;
 
 import java.util.List;
 
@@ -18,47 +17,43 @@ import java.util.List;
  * Created by irmaka on 11/14/2016.
  */
 
-public class eventAdapter extends ArrayAdapter {
-    List<CalendarEvent> _events;
-    Context context = null;
-
-    public eventAdapter(Context context, int resource, List<CalendarEvent> events)
-    {
-        super(context,resource,events);
+public class eventAdapter extends ArrayAdapter<RealmCalendarEvent> {
+    private int resource;
+    private Context context;
+    private LinearLayout newView;
+    public eventAdapter(Context context, int resource, List<RealmCalendarEvent> items) {
+        super(context, resource, items);
         this.context=context;
-//        this._events=events;
-    }
-    public List<?> getCollection() {return _events;};
-    @Override
-    public int getCount() {
-        return _events.size();
+        this.resource=resource;
+
     }
 
+    @NonNull
     @Override
-    public Object getItem(int position) {
-        return _events.get(position);
-    }
+    public View getView(final int position, View convertView, @NonNull ViewGroup parent) {
 
-    @Override
-    public long getItemId(int position) {
-        return position;
-    }
+        if (convertView == null) {
+            newView = new LinearLayout(getContext());
+            String inflater = Context.LAYOUT_INFLATER_SERVICE;
+            LayoutInflater li;
+            li = (LayoutInflater) getContext().
+                    getSystemService(inflater);
+            li.inflate(resource, newView, true);
+        } else {
+            newView = (LinearLayout) convertView;
+        }
+        RealmCalendarEvent day = getItem(position);
+        final TextView eventTitle=(TextView)newView.findViewById(R.id.eventTitle);
+        final TextView eventTime=(TextView)newView.findViewById(R.id.eventTime);
+        final TextView eventDesc=(TextView)newView.findViewById(R.id.eventDescription);
+
+        eventTime.setText(day.getTime());
+        eventDesc.setText(day.getDescription());
+        eventTitle.setText(day.getTitle());
+
+        return newView;
 
 
 
-    @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
-        CalendarEvent events=_events.get(position);
-        LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        View view = inflater.inflate(R.layout.property_layout, null);
-
-        TextView title= (TextView) view.findViewById(R.id.eventTitle);
-        TextView description= (TextView) view.findViewById(R.id.eventDescription);
-        TextView dateAndTime= (TextView) view.findViewById(R.id.eventTime);
-        title.setText(String.valueOf(events.getTitle()));
-        description.setText(String.valueOf(events.getDescription()));
-        dateAndTime.setText(String.valueOf(events.getDateAndTime()));
-
-        return view;
     }
 }
