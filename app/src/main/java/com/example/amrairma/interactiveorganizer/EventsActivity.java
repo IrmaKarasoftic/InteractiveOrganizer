@@ -49,6 +49,8 @@ public class EventsActivity extends AppCompatActivity {
 
         realm.beginTransaction();
         RealmResults<RealmCalendarEvent> filter=realm.where(RealmCalendarEvent.class).equalTo("date", date).findAll();
+       // RealmResults<RealmCalendarEvent> filter=realm.where(RealmCalendarEvent.class).findAll();
+
         realm.commitTransaction();
 
         eventAdapter e = new eventAdapter(this, R.layout.property_layout, filter);

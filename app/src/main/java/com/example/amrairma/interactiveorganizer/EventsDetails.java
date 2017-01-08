@@ -43,6 +43,5 @@ public class EventsDetails extends AppCompatActivity {
         eventDesc.setText(day.getDescription());
         eventTitle.setText(day.getTitle());
 
-
     }
 }

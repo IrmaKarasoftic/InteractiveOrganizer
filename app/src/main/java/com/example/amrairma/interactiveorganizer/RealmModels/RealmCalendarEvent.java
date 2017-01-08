@@ -8,6 +8,7 @@ public class RealmCalendarEvent extends RealmObject {
     private String description;
     private String date;
     private String time;
+    private String type;
 
     public RealmCalendarEvent() {};
 
@@ -40,5 +41,13 @@ public class RealmCalendarEvent extends RealmObject {
 
     public void setTime(String time) {
         this.time = time;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
     }
 }

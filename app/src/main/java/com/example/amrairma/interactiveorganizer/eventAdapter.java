@@ -1,12 +1,14 @@
 package com.example.amrairma.interactiveorganizer;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.support.annotation.NonNull;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.LinearLayout;
+import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.example.amrairma.interactiveorganizer.RealmModels.RealmCalendarEvent;
@@ -50,7 +52,12 @@ public class eventAdapter extends ArrayAdapter<RealmCalendarEvent> {
         eventTime.setText(day.getTime());
         eventDesc.setText(day.getDescription());
         eventTitle.setText(day.getTitle());
-
+        String type=day.getType();
+        if(type.equals("Rodjendan"))
+            eventTitle.setBackgroundColor(Color.parseColor("#4286f4"));
+        else if(type.equals("Sastanak"))
+            eventTitle.setBackgroundColor(Color.parseColor("#9b42f4"));
+        else  eventTitle.setBackgroundColor(Color.parseColor("#f46542"));
         return newView;
 
 
