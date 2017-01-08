@@ -12,6 +12,8 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.amrairma.interactiveorganizer.Models.Config;
+import com.example.amrairma.interactiveorganizer.RealmModels.RealmCalendarEvent;
+import com.example.amrairma.interactiveorganizer.RealmModels.RealmPerson;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -19,23 +21,40 @@ import org.json.JSONObject;
 
 import java.util.HashMap;
 import java.util.regex.Pattern;
+
+import io.realm.Realm;
+import io.realm.RealmConfiguration;
+import io.realm.RealmResults;
+
 public class pocetniScreen extends AppCompatActivity {
     private EditText editTextName;
     private EditText editTextLastName;
     private EditText editTextEmail;
     private String JSON_STRING;
+    private Realm realm;
     Integer brojac = null;
 
     private static final Pattern sPattern = Pattern.compile("^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,4}$");
     private Button buttonOK;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-   //     getJSON();
-      //  if(brojac==1)
-        setContentView(R.layout.activity_pocetni_screen);
-       // else setContentView(R.layout.activity_home_page);
+        Realm.init(getApplicationContext());
 
+        RealmConfiguration config = new RealmConfiguration.Builder()
+                .deleteRealmIfMigrationNeeded()
+                .build();
+        Realm.setDefaultConfiguration(config);
+        realm = Realm.getDefaultInstance();
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_pocetni_screen);
+        realm.beginTransaction();
+        RealmResults<RealmPerson> filter=realm.where(RealmPerson.class).findAll();
+        realm.commitTransaction();
+        if (filter.size() != 0)
+        {
+            Intent intent = new Intent(pocetniScreen.this, HomePage.class);
+            startActivity(intent);
+        }
         Button button= (Button) findViewById(R.id.buttonOK);
         editTextEmail=(EditText) findViewById(R.id.email);
         editTextName=(EditText) findViewById(R.id.firstName);
@@ -49,9 +68,6 @@ public class pocetniScreen extends AppCompatActivity {
                 EditText email = (EditText) findViewById(R.id.email);
                 boolean isEmailValid= Patterns.EMAIL_ADDRESS.matcher(email.getText().toString()).matches();
 
-
-
-                // Ovdje se ne klik nije nista desavalo, samo vodilo na sljedeci screen
                 if(firstName.getText().toString().length() != 0 && lastName.getText().toString().length()!=0 && isEmailValid) {
                     addPerson();
                 }
@@ -77,34 +93,50 @@ public class pocetniScreen extends AppCompatActivity {
         // final String birth=
 
         class AddPerson extends AsyncTask<Void,Void,String> {
-
+            private Realm realm;
             ProgressDialog loading;
 
             @Override
             protected void onPreExecute(){
                 super.onPreExecute();
                 loading = ProgressDialog.show(pocetniScreen.this,"Adding...","Wait..",false,false);
-
             }
 
             @Override
             protected void onPostExecute(String s) {
                 super.onPostExecute(s);
                 loading.dismiss();
-                Toast.makeText(pocetniScreen.this,s,Toast.LENGTH_LONG).show();
                 Intent intent = new Intent(pocetniScreen.this, HomePage.class);
                 startActivity(intent);
             }
 
             @Override
             protected String doInBackground(Void... v) {
-                HashMap<String,String> params = new HashMap<>();
+                Realm.init(getApplicationContext());
+
+                RealmConfiguration config = new RealmConfiguration.Builder()
+                        .deleteRealmIfMigrationNeeded()
+                        .build();
+                Realm.setDefaultConfiguration(config);
+                realm = Realm.getDefaultInstance();
+
+                if (!realm.isInTransaction())
+                    realm.beginTransaction();
+                RealmPerson person=new RealmPerson();
+                person.setFirstName(name);
+                person.setLastName(lastname);
+                person.setEmail(email);
+
+                realm.copyToRealm(person);
+                realm.commitTransaction();
+                /*HashMap<String,String> params = new HashMap<>();
                 params.put(Config.KEY_NAME,name);
                 params.put(Config.KEY_LASTNAME,lastname);
                 params.put(Config.KEY_EMAIL,email);
                 RequestHandler rh = new RequestHandler();
                 String res = rh.sendPostRequest(Config.URL_OK, params);
-                return res;
+                return res;*/
+                return "Success";
             }
 
         }
