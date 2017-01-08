@@ -3,6 +3,7 @@
     <string name="action_settings">Settings</string>
     <string name="AddTitle">Add title</string>
     <string name="çhooseType">Choose event type</string>
+    <string name="sendMail">Send Email</string>
 
     <string-array name="eventTypes">
         <item>Rodjendan</item>

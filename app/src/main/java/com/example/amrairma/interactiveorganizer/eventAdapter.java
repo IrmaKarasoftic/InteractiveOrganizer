@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -48,6 +49,9 @@ public class eventAdapter extends ArrayAdapter<RealmCalendarEvent> {
         final TextView eventTitle=(TextView)newView.findViewById(R.id.eventTitle);
         final TextView eventTime=(TextView)newView.findViewById(R.id.eventTime);
         final TextView eventDesc=(TextView)newView.findViewById(R.id.eventDescription);
+        final TextView minT = (TextView) newView.findViewById(R.id.minT);
+        final TextView maxT = (TextView) newView.findViewById(R.id.maxT);
+        final ImageView image = (ImageView) newView.findViewById(R.id.weatherIcon);
 
         eventTime.setText(day.getTime());
         eventDesc.setText(day.getDescription());
@@ -58,6 +62,7 @@ public class eventAdapter extends ArrayAdapter<RealmCalendarEvent> {
         else if(type.equals("Sastanak"))
             eventTitle.setBackgroundColor(Color.parseColor("#9b42f4"));
         else  eventTitle.setBackgroundColor(Color.parseColor("#f46542"));
+
         return newView;
 
 

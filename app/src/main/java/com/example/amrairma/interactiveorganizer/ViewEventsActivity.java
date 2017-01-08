@@ -1,9 +1,12 @@
 package com.example.amrairma.interactiveorganizer;
 
+import android.app.DialogFragment;
 import android.app.ProgressDialog;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
@@ -28,13 +31,10 @@ public class ViewEventsActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        //Bundle extras = getIntent().getExtras();
         setContentView(R.layout.view_events);
         listView = (ListView) findViewById(R.id.listOfEvents);
-        //listView.setOnClickListener(this);
         getJSON();
-        //ArrayAdapter<HashMap<String,String>> adapter=new eventAdapter(this,0, list);
-        //listView.setAdapter(adapter);
+
     }
 
     private void getJSON(){
@@ -104,7 +104,6 @@ public class ViewEventsActivity extends AppCompatActivity {
                 new int[]{R.id.eventName, R.id.eventDescription});//,R.id.eventTime});
 
         listView.setAdapter(adapter);
-
 
     }
 }

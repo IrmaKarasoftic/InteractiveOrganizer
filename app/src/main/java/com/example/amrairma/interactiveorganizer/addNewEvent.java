@@ -26,6 +26,8 @@ import io.realm.RealmConfiguration;
 
 import static android.R.attr.path;
 
+import static android.R.attr.path;
+
 public class addNewEvent extends AppCompatActivity {
 
     private EditText dsc;
@@ -86,7 +88,7 @@ public class addNewEvent extends AppCompatActivity {
                     calendar.set(Calendar.MINUTE, (eventTime.getCurrentMinute()));
                     alarmMgr = (AlarmManager)getApplicationContext().getSystemService(Context.ALARM_SERVICE);
                     Intent intent = new Intent(getApplicationContext(), AlarmReciever.class);
-                    alarmIntent = PendingIntent.getBroadcast(getApplicationContext(), 1, intent, PendingIntent.FLAG_UPDATE_CURRENT);
+                    alarmIntent = PendingIntent.getBroadcast(getApplicationContext(), 1, intent, 0);
 
                     alarmMgr.set(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), alarmIntent);
 

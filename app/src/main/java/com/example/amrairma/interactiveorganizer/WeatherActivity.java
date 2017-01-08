@@ -49,7 +49,7 @@ public class WeatherActivity extends AppCompatActivity {
 
         apiService = retrofit.create(ApiInterface.class);
 
-        Call<Weather> call = apiService.getWeather("5bdb13524fa14f918c9173422161812", "Sarajevo", 7);
+        Call<Weather> call = apiService.getWeather("5bdb13524fa14f918c9173422161812", "Sarajevo", 30);
         call.enqueue(new Callback<Weather>() {
             @Override
             public void onResponse(Call<Weather> call, Response<Weather> response) {
