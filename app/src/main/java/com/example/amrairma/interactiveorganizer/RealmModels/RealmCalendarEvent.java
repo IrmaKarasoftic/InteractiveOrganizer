@@ -13,6 +13,7 @@ public class RealmCalendarEvent extends RealmObject {
     private String time;
     private String type;
     private RealmList<RealmMailToPersons> persons;
+    private RealmEventTypes eventTypes;
 
     public RealmCalendarEvent() {
         persons= new RealmList<>();

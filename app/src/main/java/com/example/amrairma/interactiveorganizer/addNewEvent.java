@@ -17,8 +17,10 @@ import android.widget.TimePicker;
 import android.widget.Toast;
 
 import com.example.amrairma.interactiveorganizer.RealmModels.RealmCalendarEvent;
+import com.example.amrairma.interactiveorganizer.RealmModels.RealmEventTypes;
 import com.example.amrairma.interactiveorganizer.RealmModels.RealmMailToPersons;
 import com.example.amrairma.interactiveorganizer.RealmModels.RealmPerson;
+import com.example.amrairma.interactiveorganizer.RealmModels.RealmWeather;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -28,6 +30,7 @@ import java.util.jar.Attributes;
 import io.realm.Realm;
 import io.realm.RealmConfiguration;
 import io.realm.RealmList;
+import io.realm.RealmResults;
 
 import static android.R.attr.path;
 
@@ -83,6 +86,35 @@ public class addNewEvent extends AppCompatActivity {
                 .build();
         Realm.setDefaultConfiguration(config);
         realm = Realm.getDefaultInstance();
+
+        realm.beginTransaction();
+        RealmResults<RealmEventTypes> eventTypes=realm.where(RealmEventTypes.class).findAll();
+        realm.commitTransaction();
+        if(eventTypes.size()==0)
+        {
+            RealmEventTypes ret1=new RealmEventTypes();
+            RealmEventTypes ret2=new RealmEventTypes();
+            RealmEventTypes ret3=new RealmEventTypes();
+
+            realm.beginTransaction();
+            ret1.setDescription("Rodjendan");
+            ret1.setColor("#4286f4");
+            realm.copyToRealm(ret1);
+            realm.commitTransaction();
+
+            realm.beginTransaction();
+            ret2.setDescription("Sastanak");
+            ret2.setColor("#9b42f4");
+            realm.copyToRealm(ret2);
+            realm.commitTransaction();
+
+            realm.beginTransaction();
+            ret3.setDescription("Sastanak");
+            ret3.setColor("#f46542");
+            realm.copyToRealm(ret1);
+            realm.commitTransaction();
+        }
+
         final String[] selectedItemText = new String[1];
         eventType.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
