@@ -1,5 +1,9 @@
 package com.example.amrairma.interactiveorganizer.RealmModels;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import io.realm.Realm;
 import io.realm.RealmObject;
 
 /**
@@ -10,8 +14,6 @@ public class RealmPerson extends  RealmObject{
     private String firstName;
     private String lastName;
     private String email;
-
-    public RealmPerson() {};
 
 
     public String getFirstName() {
@@ -34,5 +36,4 @@ public class RealmPerson extends  RealmObject{
     public void setEmail(String email) {
         this.email = email;
     }
-
 }

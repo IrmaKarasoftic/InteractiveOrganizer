@@ -1,12 +1,15 @@
 package com.example.amrairma.interactiveorganizer;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Color;
+import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
@@ -24,13 +27,12 @@ public class eventAdapter extends ArrayAdapter<RealmCalendarEvent> {
     private int resource;
     private Context context;
     private LinearLayout newView;
+    Button myButton;
     public eventAdapter(Context context, int resource, List<RealmCalendarEvent> items) {
         super(context, resource, items);
         this.context=context;
         this.resource=resource;
-
     }
-
     @NonNull
     @Override
     public View getView(final int position, View convertView, @NonNull ViewGroup parent) {
@@ -52,7 +54,6 @@ public class eventAdapter extends ArrayAdapter<RealmCalendarEvent> {
         final TextView minT = (TextView) newView.findViewById(R.id.minT);
         final TextView maxT = (TextView) newView.findViewById(R.id.maxT);
         final ImageView image = (ImageView) newView.findViewById(R.id.weatherIcon);
-
         eventTime.setText(day.getTime());
         eventDesc.setText(day.getDescription());
         eventTitle.setText(day.getTitle());

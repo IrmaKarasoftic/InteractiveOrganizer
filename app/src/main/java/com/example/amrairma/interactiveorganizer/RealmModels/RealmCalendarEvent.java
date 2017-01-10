@@ -1,5 +1,8 @@
 package com.example.amrairma.interactiveorganizer.RealmModels;
 
+import java.util.ArrayList;
+
+import io.realm.RealmList;
 import io.realm.RealmObject;
 
 public class RealmCalendarEvent extends RealmObject {
@@ -9,8 +12,11 @@ public class RealmCalendarEvent extends RealmObject {
     private String date;
     private String time;
     private String type;
+    private RealmList<RealmMailToPersons> persons;
 
-    public RealmCalendarEvent() {};
+    public RealmCalendarEvent() {
+        persons= new RealmList<>();
+    };
 
 
     public String getTitle() {
@@ -50,4 +56,14 @@ public class RealmCalendarEvent extends RealmObject {
     public void setType(String type) {
         this.type = type;
     }
+
+    public RealmList<RealmMailToPersons> getPersons(){return persons;}
+    public void setPersons(RealmList<RealmMailToPersons> personM){
+        for (int i =0;i<personM.size();i++)
+        {
+            persons.add(personM.get(i));
+        }
+    }
+
+
 }

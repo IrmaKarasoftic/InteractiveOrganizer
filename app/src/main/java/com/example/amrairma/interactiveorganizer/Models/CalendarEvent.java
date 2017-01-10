@@ -38,6 +38,7 @@ public class CalendarEvent {
         return eventTypeId;
     }
 
+
     public void setTitle(String title) {
         this.title = title;
     }

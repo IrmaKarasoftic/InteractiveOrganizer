@@ -17,14 +17,17 @@ import android.widget.TimePicker;
 import android.widget.Toast;
 
 import com.example.amrairma.interactiveorganizer.RealmModels.RealmCalendarEvent;
+import com.example.amrairma.interactiveorganizer.RealmModels.RealmMailToPersons;
+import com.example.amrairma.interactiveorganizer.RealmModels.RealmPerson;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.jar.Attributes;
 
 import io.realm.Realm;
 import io.realm.RealmConfiguration;
-
-import static android.R.attr.path;
+import io.realm.RealmList;
 
 import static android.R.attr.path;
 
@@ -32,6 +35,13 @@ public class addNewEvent extends AppCompatActivity {
 
     private EditText dsc;
     private EditText eventName;
+    private EditText Name1;
+    private EditText Name2;
+    private EditText Name3;
+    private EditText mail1;
+    private EditText mail2;
+    private EditText mail3;
+
     private Spinner eventType;
     private TimePicker eventTime;
     private TextView eventDate;
@@ -58,6 +68,14 @@ public class addNewEvent extends AppCompatActivity {
         eventType = (Spinner) findViewById(R.id.type);
         eventTime = (TimePicker) findViewById(R.id.tp_timepicker);
         eventTime.setIs24HourView(true);
+        Name1=(EditText)findViewById(R.id.mailToName1);
+        Name2=(EditText)findViewById(R.id.mailToName2);
+        Name3=(EditText)findViewById(R.id.mailToName3);
+
+        mail1=(EditText)findViewById(R.id.mailTo1);
+        mail2=(EditText)findViewById(R.id.mailTo2);
+        mail3=(EditText)findViewById(R.id.mailTo3);
+
         Realm.init(getApplicationContext());
 
         RealmConfiguration config = new RealmConfiguration.Builder()
@@ -100,11 +118,155 @@ public class addNewEvent extends AppCompatActivity {
                     String hour=eventTime.getCurrentHour().toString();
                     String minute=eventTime.getCurrentMinute().toString();
                     String time = hour+':'+minute;
+
                     event.setTime(time);
                     event.setType(selectedItemText[0]);
                     event.setDescription(dsc.getText().toString());
+                    RealmList<RealmMailToPersons> persons = new RealmList<>();
+                    RealmMailToPersons rmtp1= new RealmMailToPersons();
+                    rmtp1.setMail(mail1.toString());
+                    rmtp1.setMail(Name1.toString());
+                    persons.add(rmtp1);
+                    RealmMailToPersons rmtp2= new RealmMailToPersons();
+                    RealmMailToPersons rmtp3= new RealmMailToPersons();
+                    rmtp2.setMail(mail1.toString());
+                    rmtp2.setMail(Name1.toString());
+                    persons.add(rmtp2);
+                    rmtp3.setMail(mail1.toString());
+                    rmtp3.setMail(Name1.toString());
+                    persons.add(rmtp3);
+                    event.setPersons(persons);
                     realm.copyToRealm(event);
                     realm.commitTransaction();
+                    if(mail1.getText().toString()!="" && mail2.getText().toString()!="" && mail3.getText().toString()!="")
+                    {
+                        String[] addresses = {
+                                mail1.getText().toString(),mail2.getText().toString(),mail3.getText().toString()
+                        };
+                        final Intent emailIntent = new Intent(android.content.Intent.ACTION_SEND);
+                        emailIntent.setType("text/plain");
+                        emailIntent.putExtra(android.content.Intent.EXTRA_EMAIL, addresses);
+                        String message = "Hello! Amra and Irma sent you details about one event. Event title: "+event.getTitle() + " ("+event.getDescription()+") will be on: "+event.getDate() + " at: "+ event.getTime();
+                        emailIntent.putExtra(android.content.Intent.EXTRA_SUBJECT, "Event information");
+                        emailIntent.putExtra(android.content.Intent.EXTRA_TEXT, message);
+                        emailIntent.setType("message/rfc822");
+                        try {
+                            startActivity(Intent.createChooser(emailIntent,
+                                    "Send email using..."));
+                        } catch (android.content.ActivityNotFoundException ex) {
+                        }
+                    }
+
+                    else if(mail1.getText().toString()!="" && mail2.getText().toString()!="" && mail3.getText().toString()=="")
+                    {
+                        String[] addresses = {
+                                mail1.getText().toString(),mail2.getText().toString()
+                        };
+                        final Intent emailIntent = new Intent(android.content.Intent.ACTION_SEND);
+                        emailIntent.setType("text/plain");
+                        emailIntent.putExtra(android.content.Intent.EXTRA_EMAIL, addresses);
+                        String message = "Hello! Someone sent you details about one event. Event title: "+event.getTitle() + " ("+event.getDescription()+") will be on: "+event.getDate() + " at: "+ event.getTime();
+                        emailIntent.putExtra(android.content.Intent.EXTRA_SUBJECT, "Event information");
+                        emailIntent.putExtra(android.content.Intent.EXTRA_TEXT, message);
+                        emailIntent.setType("message/rfc822");
+                        try {
+                            startActivity(Intent.createChooser(emailIntent,
+                                    "Send email using..."));
+                        } catch (android.content.ActivityNotFoundException ex) {
+                        }
+                    }
+
+                    else if(mail1.getText().toString()!="" && mail2.getText().toString()=="" && mail3.getText().toString()!="")
+                    {
+                        String[] addresses = {
+                                mail1.getText().toString(),mail3.getText().toString()
+                        };
+                        final Intent emailIntent = new Intent(android.content.Intent.ACTION_SEND);
+                        emailIntent.setType("text/plain");
+                        emailIntent.putExtra(android.content.Intent.EXTRA_EMAIL, addresses);
+                        String message = "Hello!. Someone sent you details about one event. Event title: "+event.getTitle() + " ("+event.getDescription()+") will be on: "+event.getDate() + " at: "+ event.getTime();
+                        emailIntent.putExtra(android.content.Intent.EXTRA_SUBJECT, "Event information");
+                        emailIntent.putExtra(android.content.Intent.EXTRA_TEXT, message);
+                        emailIntent.setType("message/rfc822");
+                        try {
+                            startActivity(Intent.createChooser(emailIntent,
+                                    "Send email using..."));
+                        } catch (android.content.ActivityNotFoundException ex) {
+                        }
+                    }
+                    else if(mail1.getText().toString()=="" && mail2.getText().toString()!="" && mail3.getText().toString()!="")
+                    {
+                        String[] addresses = {
+                                mail2.getText().toString(),mail3.getText().toString()
+                        };
+                        final Intent emailIntent = new Intent(android.content.Intent.ACTION_SEND);
+                        emailIntent.setType("text/plain");
+                        emailIntent.putExtra(android.content.Intent.EXTRA_EMAIL, addresses);
+                        String message = "Hello!. Someone sent you details about one event. Event title: "+event.getTitle() + " ("+event.getDescription()+") will be on: "+event.getDate() + " at: "+ event.getTime();
+                        emailIntent.putExtra(android.content.Intent.EXTRA_SUBJECT, "Event information");
+                        emailIntent.putExtra(android.content.Intent.EXTRA_TEXT, message);
+                        emailIntent.setType("message/rfc822");
+                        try {
+                            startActivity(Intent.createChooser(emailIntent,
+                                    "Send email using..."));
+                        } catch (android.content.ActivityNotFoundException ex) {
+                        }
+                    }
+                    else if(mail1.getText().toString()!="" && mail2.getText().toString()=="" && mail3.getText().toString()=="")
+                    {
+                        String[] addresses = {
+                                mail1.getText().toString()
+                        };
+                        final Intent emailIntent = new Intent(android.content.Intent.ACTION_SEND);
+                        emailIntent.setType("text/plain");
+                        emailIntent.putExtra(android.content.Intent.EXTRA_EMAIL, addresses);
+                        String message = "Hello " + Name1.toString()+". Someone sent you details about one event. Event title: "+event.getTitle() + " ("+event.getDescription()+") will be on: "+event.getDate() + " at: "+ event.getTime();
+                        emailIntent.putExtra(android.content.Intent.EXTRA_SUBJECT, "Event information");
+                        emailIntent.putExtra(android.content.Intent.EXTRA_TEXT, message);
+                        emailIntent.setType("message/rfc822");
+                        try {
+                            startActivity(Intent.createChooser(emailIntent,
+                                    "Send email using..."));
+                        } catch (android.content.ActivityNotFoundException ex) {
+                        }
+                    }
+                    else if(mail1.getText().toString()=="" && mail2.getText().toString()!="" && mail3.getText().toString()=="")
+                    {
+                        String[] addresses = {
+                                mail2.getText().toString()
+                        };
+                        final Intent emailIntent = new Intent(android.content.Intent.ACTION_SEND);
+                        emailIntent.setType("text/plain");
+                        emailIntent.putExtra(android.content.Intent.EXTRA_EMAIL, addresses);
+                        String message = "Hello " +Name2.toString()+". Someone sent you details about one event. Event title: "+event.getTitle() + " ("+event.getDescription()+") will be on: "+event.getDate() + " at: "+ event.getTime();
+                        emailIntent.putExtra(android.content.Intent.EXTRA_SUBJECT, "Event information");
+                        emailIntent.putExtra(android.content.Intent.EXTRA_TEXT, message);
+                        emailIntent.setType("message/rfc822");
+                        try {
+                            startActivity(Intent.createChooser(emailIntent,
+                                    "Send email using..."));
+                        } catch (android.content.ActivityNotFoundException ex) {
+                        }
+                    }
+
+                    else if(mail1.getText().toString()=="" && mail2.getText().toString()=="" && mail3.getText().toString()!="")
+                    {
+                        String[] addresses = {
+                                mail3.getText().toString()
+                        };
+                        final Intent emailIntent = new Intent(android.content.Intent.ACTION_SEND);
+                        emailIntent.setType("text/plain");
+                        emailIntent.putExtra(android.content.Intent.EXTRA_EMAIL, addresses);
+                        String message = "Hello " +Name3.toString()+". Someone sent you details about one event. Event title: "+event.getTitle() + " ("+event.getDescription()+") will be on: "+event.getDate() + " at: "+ event.getTime();
+                        emailIntent.putExtra(android.content.Intent.EXTRA_SUBJECT, "Event information");
+                        emailIntent.putExtra(android.content.Intent.EXTRA_TEXT, message);
+                        emailIntent.setType("message/rfc822");
+                        try {
+                            startActivity(Intent.createChooser(emailIntent,
+                                    "Send email using..."));
+                        } catch (android.content.ActivityNotFoundException ex) {
+                        }
+                    }
                     onBackPressed();
                 }
                 else

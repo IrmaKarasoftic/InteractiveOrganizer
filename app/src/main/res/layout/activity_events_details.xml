@@ -43,12 +43,6 @@
             android:inputType="text"
             android:text="" />
 
-            <Button
-                android:text="Email event"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/pemail"
-                android:layout_weight="1" />
         </LinearLayout>
         <LinearLayout
             android:layout_width="match_parent"
